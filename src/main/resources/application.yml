@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/FASTBOARD?serverTimezone=Asia/Seoul
+    username: root
+    password: wnsfo12!
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
