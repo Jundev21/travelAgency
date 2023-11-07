@@ -42,14 +42,12 @@ public class TravelService {
                 .orElseThrow(() -> new Exception("해당 아이디가 없습니다. "));
     }
 
-//    public UpDateTravelDTO updateTravel(Long travelID, UpDateTravelDTO upDateTravelDTO) {
-//
-//        Travel travel = travelRepository.findById(travelID).orElseThrow(()->new Exception("해당 아이디가 없습니다"));
-//
-//        travel.updateTravelInfo(upDateTravelDTO.getTripName(), upDateTravelDTO.getDepartTime(), upDateTravelDTO.getArrivedTime(), upDateTravelDTO.getIsDomestic());
-//
-//        return UpDateTravelDTO.responseUpdateTravel(travel);
-//    }
+    public UpDateTravelDTO updateTravel(Long travelID, UpDateTravelDTO upDateTravelDTO) {
+
+        Travel travel = travelRepository.findById(travelID).orElseThrow(()->new Exception("해당 아이디가 없습니다"));
+        travel.updateTravelInfo(upDateTravelDTO.getTripName(), upDateTravelDTO.getDepartTime(), upDateTravelDTO.getArrivedTime(), upDateTravelDTO.getIsDomestic());
+        return UpDateTravelDTO.responseUpdateTravel(travel);
+    }
 
     public List<Travel> getAllTravels() {
 

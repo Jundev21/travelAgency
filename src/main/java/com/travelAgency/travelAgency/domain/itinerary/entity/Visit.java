@@ -20,7 +20,7 @@ public class Visit {
     private String placeName;
     private String departTime;
     private String arriveTime;
-    @OneToOne(mappedBy = "visit")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "visit", cascade = CascadeType.ALL)
     private Itinerary itinerary;
 
 

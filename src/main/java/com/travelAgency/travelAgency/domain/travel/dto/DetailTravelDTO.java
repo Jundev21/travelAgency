@@ -18,16 +18,17 @@ public class DetailTravelDTO {
 
 
     @Builder
+    @Getter
     public static class ResponseDetailTravelDTO{
         protected Long tripId;
         private String tripName;
         private String departTime;
         private String arrivedTime;
         private Boolean isDomestic= false;
-        private List<Itinerary> itineraries = new ArrayList<>();
-
+        private List<CreateItineraryDTO.InnerItineraryDTO> itineraries = new ArrayList<>();
 
         public static ResponseDetailTravelDTO DetailTravelDTOFromEntity(Travel travelDTO){
+
             return ResponseDetailTravelDTO.builder()
                     .tripId(travelDTO.getId())
                     .tripName(travelDTO.getTripName())
@@ -35,12 +36,10 @@ public class DetailTravelDTO {
                     .arrivedTime(travelDTO.getArrivedTime())
                     .isDomestic(travelDTO.getIsDomestic())
                     .itineraries(travelDTO.getItineraries().stream()
-                            .map((e)-> Itinerary.builder()
-                                    .id(e.getId())
-                                    .itineraryName(e.getItineraryName())
-                                    .build()).collect(Collectors.toList())
-                    )
+                            .map(CreateItineraryDTO.InnerItineraryDTO::fromEntity)
+                            .collect(Collectors.toList()))
                     .build();
+
         }
 
     }

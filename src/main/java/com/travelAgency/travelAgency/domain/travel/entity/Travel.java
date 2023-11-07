@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class Travel {
 
     @Id
@@ -18,10 +19,11 @@ public class Travel {
     private String tripName;
     private String departTime;
     private String arrivedTime;
-    @Builder.Default
     private Boolean isDomestic= false;
     @OneToMany(mappedBy = "travel")
     private List<Itinerary> itineraries = new ArrayList<>();
+
+
 
 
     @Builder

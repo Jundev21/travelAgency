@@ -19,7 +19,7 @@ public class Hotel {
     private String hotelName;
     private String checkInTime;
     private String checkOutTime;
-    @OneToOne(mappedBy = "hotel")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "hotel", cascade = CascadeType.ALL)
     private Itinerary itinerary;
 
 }

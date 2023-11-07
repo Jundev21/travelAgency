@@ -21,6 +21,6 @@ public class Transfortation {
     private String toPlace;
     private String departTime;
     private String arriveTime;
-    @OneToOne(mappedBy = "transfortation")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "transfortation", cascade = CascadeType.ALL)
     private Itinerary itinerary;
 }

@@ -1,13 +1,10 @@
 package com.travelAgency.travelAgency.domain.itinerary.service;
 
 import com.travelAgency.travelAgency.domain.common.Exception;
-import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
 import com.travelAgency.travelAgency.domain.itinerary.entity.Itinerary;
 import com.travelAgency.travelAgency.domain.itinerary.repository.ItineraryRepository;
-import com.travelAgency.travelAgency.domain.transfortation.repository.TransfortationRepository;
 import com.travelAgency.travelAgency.domain.travel.entity.Travel;
 import com.travelAgency.travelAgency.domain.travel.repository.TravelRepository;
-import com.travelAgency.travelAgency.domain.visit.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +23,6 @@ public class ItineraryService {
 
     private final TravelRepository travelRepository;
     private final ItineraryRepository itineraryRepository;
-    private final VisitRepository visitRepository;
-    private final TransfortationRepository transfortationRepository;
-    private final HotelRepository hotelRepository;
 
     //문제점이 무엇인가
     // 리퀘스트에 데이터가 여러 배열 형태로 들어왔을때 어떻게 모든 데이터들을 저장하고 응답을 내릴것인지.
@@ -41,10 +35,14 @@ public class ItineraryService {
         List<InnerItineraryDTO> responseData = new ArrayList<>();
 
         for(Itinerary innerItineraryDTO : createItineraryDTO.getItineraryList()){
-            Itinerary newInnerDTO = Itinerary.builder()
-                    .itineraryName(innerItineraryDTO.getItineraryName())
-                    .travel(travelById)
-                    .build();
+
+            Itinerary newInnerDTO = new Itinerary(
+                    innerItineraryDTO.getItineraryName(),
+                    travelById,
+                    innerItineraryDTO.getTransfortation(),
+                    innerItineraryDTO.getHotel(),
+                    innerItineraryDTO.getVisit()
+            );
 
             InnerItineraryDTO response =  InnerItineraryDTO.fromEntity(innerItineraryDTO);
 
