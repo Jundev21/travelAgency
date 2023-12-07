@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.user.dto;
+package com.travelAgency.travelAgency.domain.user.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,6 +6,5 @@ import lombok.Getter;
 @Getter
 @Builder
 public class RegisterResponseDTO {
-
-	private final String jwtToken;
+	private String jwtToken;
 }

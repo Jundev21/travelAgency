@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.security;
+package com.travelAgency.travelAgency.domain.jwt;
 
 
 import com.travelAgency.travelAgency.domain.jwt.JwtAuthenticationFilter;
@@ -18,8 +18,10 @@ import org.springframework.security.config.annotation.web.configurers.CsrfConfig
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -29,6 +31,7 @@ public class WebSecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final LogoutHandler logoutHandler;
 
 
 
@@ -50,9 +53,14 @@ public class WebSecurityConfig {
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error")).permitAll()
                 .anyRequest().authenticated()
             )
-            .authenticationProvider(authenticationProvider)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+            .logout(logout ->
+                logout.logoutUrl("/logout")
+                    .addLogoutHandler(logoutHandler)
+                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+            )
             .build();
     }
 

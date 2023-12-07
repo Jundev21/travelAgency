@@ -33,11 +33,12 @@ public class Users implements UserDetails {
     private Role role;
 
 
-    public Users(String name, int age, String email, String password){
+    public Users(String name, int age, String email, String password, Role role){
         this.name = name;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     @Override
@@ -51,27 +52,27 @@ public class Users implements UserDetails {
     }
 
     @Override
+    public String getPassword(){
+        return password;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
-    public String getPassword(){
-        return password;
+        return true;
     }
 }
