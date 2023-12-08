@@ -181,7 +181,7 @@ class HotelServiceTest {
 		imagesRepository.saveAll(List.of(hotelsImages1, hotelsImages2, hotelsImages3));
 		roomRepository.saveAll(List.of(rooms1, rooms2, rooms3,rooms11,rooms22,rooms33));
 
-		ResponseEntity<List<HotelsResponseDto>> hotelsResponseDto = hotelService.getAllHotels();
+		ResponseEntity<List<HotelsResponseDto>> hotelsResponseDto = hotelService.getAllHotels(1,1);
 
 		Objects.requireNonNull(hotelsResponseDto.getBody()).forEach(
 				e->{

@@ -18,5 +18,11 @@ public class HotelsResponseDto {
 	private String country;
 	private String lowestPrice;
 	private List<HotelsImagesDto> hotelsImagesDtoList;
+	private int pageNo;
+	private int pageSize;
+	private long totalElements;
+	private int totalPages;
+	private boolean lastPage;
+
 
 }

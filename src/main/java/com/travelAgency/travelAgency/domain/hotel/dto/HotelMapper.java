@@ -16,7 +16,16 @@ public interface HotelMapper {
 	HotelMapper INSTANCE = Mappers.getMapper(HotelMapper.class);
 
 	@Mapping(source = "hotels.hotelsImagesList", target = "hotelsImagesDtoList")
-	HotelsResponseDto hotelResponseDto(Hotels hotels, String lowestPrice);
+	HotelsResponseDto hotelResponseDto(
+		Hotels hotels,
+		String lowestPrice,
+		int pageNo,
+		int pageSize,
+		long totalElements,
+		int totalPages,
+		boolean lastPage
+	);
+
 	HotelsImagesDto hotelsImagesDto(HotelsImages hotelsImages);
 
 }
