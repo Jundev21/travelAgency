@@ -24,7 +24,6 @@ public class UserController {
 	public ResponseEntity<LoginResponseDTO> loginMember(
 		@RequestBody @Validated LoginRequestDTO loginRequest
 	) {
-
 		return userService.loginMember(loginRequest);
 	}
 
@@ -32,15 +31,14 @@ public class UserController {
 	public ResponseEntity<RegisterResponseDTO> registerMember(
 		@RequestBody RegisterRequestDTO registerRequest
 	) {
-
 		return userService.registerMember(registerRequest);
 	}
 
-	// @PostMapping("/authenticate")
-	// public ResponseEntity<RegisterResponseDTO> authenticationMember(
-	// 	@RequestBody RegisterRequestDTO registerRequest
-	// ) {
-	//
-	// 	return userService.registerMember(registerRequest);
-	// }
+	@PostMapping("/logout")
+	public ResponseEntity<String> logOutMember(
+		@RequestBody RegisterRequestDTO registerRequest
+	) {
+		return ResponseEntity.ok("로그아웃 되었습니다");
+	}
+
 }
