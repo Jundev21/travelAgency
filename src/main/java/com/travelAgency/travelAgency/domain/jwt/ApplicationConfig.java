@@ -2,6 +2,7 @@ package com.travelAgency.travelAgency.domain.jwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -20,23 +21,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-	private final UserRepository userRepository;
+	private final UserRepository repository;
 
 	@Bean
-	public UserDetailsService userDetailsService(){
-		return username -> (UserDetails)userRepository.findByEmail(username)
-			.orElseThrow(() -> new UsernameNotFoundException("user not found"));
+	public UserDetailsService userDetailsService() {
+		return username -> repository.findByEmail(username)
+			.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 
 	@Bean
-	public AuthenticationProvider authenticationProvider(){
-
-		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-		authenticationProvider.setUserDetailsService(
-			userDetailsService()
-		);
-		authenticationProvider.setPasswordEncoder(passwordEncoder());
-		return authenticationProvider;
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
 	}
 
 	@Bean
@@ -50,3 +48,4 @@ public class ApplicationConfig {
 	}
 
 }
+

@@ -31,7 +31,7 @@ public class WebSecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
-    private final LogoutHandler logoutHandler;
+    // private final LogoutHandler logoutHandler;
 
 
 
@@ -51,16 +51,17 @@ public class WebSecurityConfig {
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/login")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/register")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/logout")).permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .logout(logout ->
-                logout.logoutUrl("/logout")
-                    .addLogoutHandler(logoutHandler)
-                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-            )
+            // .logout(logout ->
+            //     logout.logoutUrl("/logout")
+            //         .addLogoutHandler(logoutHandler)
+            //         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+            // )
             .build();
     }
 
