@@ -11,7 +11,7 @@ import lombok.Getter;
 @Builder
 public class RoomResponseDto {
 	private String name;
-	private String travelers;
+	private int travelers;
 	private String price;
 	private String bedNum;
 	private String roomSize;

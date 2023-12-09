@@ -1,5 +1,6 @@
 package com.travelAgency.travelAgency.domain.hotel.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,30 @@ public class HotelService {
 
 		return ResponseEntity.ok(hotelsResponseDto);
 
+	}
+
+	public ResponseEntity<List<HotelsResponseDto>> getFilterHotels(int pageNo, int pageSize, LocalDate checkIn, LocalDate checkOut, String city, String address, int travelers) {
+
+		Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC));
+		List<Hotels> hotels = hotelRepository.getCheckInCheckOutAddressCityTravelers(
+			checkIn,
+			checkOut,
+			city,
+			address,
+			travelers
+		);
+
+		List<HotelsResponseDto> hotelsResponseDtoList = hotels.stream()
+			.map(hotel -> HotelMapper.INSTANCE.hotelResponseDto(
+				hotel,
+				roomService.findLowestPrice(hotel.getId()),
+				0,
+				0,
+				0,
+				0,
+				false
+			)).toList();
+		return ResponseEntity.ok(hotelsResponseDtoList);
 	}
 
 	public ResponseEntity<HotelsDetailsResponseDto> getHotelDetailsInfo(long hotelsId) {

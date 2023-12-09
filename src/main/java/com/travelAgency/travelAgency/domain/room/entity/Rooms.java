@@ -21,7 +21,7 @@ public class Rooms {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String travelers;
+	private int travelers;
 	private String price;
 	private String bedNum;
 	private String roomSize;
@@ -35,7 +35,7 @@ public class Rooms {
 
 	public Rooms(
 		String name,
-		String travelers,
+		int travelers,
 		String price,
 		String bedNum,
 		String roomsSize,
@@ -57,7 +57,6 @@ public class Rooms {
 		this.food = food;
 		this.airCondition = airCondition;
 		this.hotels = hotels;
-
 	}
 
 }
