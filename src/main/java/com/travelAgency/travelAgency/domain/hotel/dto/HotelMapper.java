@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsDetailsResponseDto;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsImagesDto;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsResponseDto;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
@@ -27,5 +28,9 @@ public interface HotelMapper {
 	);
 
 	HotelsImagesDto hotelsImagesDto(HotelsImages hotelsImages);
+
+	@Mapping(source = "hotels.roomsList", target = "roomsDtoList")
+	@Mapping(source = "hotels.hotelsImagesList", target = "hotelsImagesDtoList")
+	HotelsDetailsResponseDto hotelDetailsResponseDto(Hotels hotels);
 
 }
