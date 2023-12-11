@@ -353,9 +353,27 @@ class HotelServiceTest {
 			"test"
 		);
 
+		Hotels hotels2 = new Hotels(
+			"test",
+			"test2",
+			"test",
+			"test",
+			"test"
+		);
+
+		Hotels hotels3 = new Hotels(
+			"test",
+			"test3",
+			"test",
+			"test",
+			"test"
+		);
+
+
+
 		Rooms rooms1 = new Rooms(
 			"test1",
-			2,
+			4,
 			"10000",
 			"test1",
 			"test1",
@@ -378,7 +396,7 @@ class HotelServiceTest {
 			true,
 			true,
 			true,
-			hotels
+			hotels2
 		);
 
 		Rooms rooms3 = new Rooms(
@@ -392,7 +410,7 @@ class HotelServiceTest {
 			true,
 			true,
 			true,
-			hotels
+			hotels3
 		);
 
 		Rooms rooms4 = new Rooms(
@@ -454,12 +472,12 @@ class HotelServiceTest {
 		Stocks stocks1 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms1);
 		Stocks stocks12 = new Stocks(LocalDate.of(2023, 12, 2), 3, rooms1);
 		Stocks stocks13 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms1);
-		Stocks stocks14 = new Stocks(LocalDate.of(2023, 12, 4), 0, rooms1);
+		Stocks stocks14 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms1);
 		Stocks stocks15 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms1);
 
-		Stocks stocks21 = new Stocks(LocalDate.of(2023, 12, 1), 0, rooms2);
-		Stocks stocks22 = new Stocks(LocalDate.of(2023, 12, 2), 0, rooms2);
-		Stocks stocks23 = new Stocks(LocalDate.of(2023, 12, 3), 0, rooms2);
+		Stocks stocks21 = new Stocks(LocalDate.of(2023, 12, 1), 2, rooms2);
+		Stocks stocks22 = new Stocks(LocalDate.of(2023, 12, 2), 2, rooms2);
+		Stocks stocks23 = new Stocks(LocalDate.of(2023, 12, 3), 2, rooms2);
 		Stocks stocks24 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms2);
 		Stocks stocks25 = new Stocks(LocalDate.of(2023, 12, 5), 0, rooms2);
 
@@ -469,46 +487,46 @@ class HotelServiceTest {
 		Stocks stocks34 = new Stocks(LocalDate.of(2023, 12, 4), 0, rooms3);
 		Stocks stocks35 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms3);
 
-		Stocks stocks41 = new Stocks(LocalDate.of(2023, 12, 1), 0, rooms4);
-		Stocks stocks42 = new Stocks(LocalDate.of(2023, 12, 2), 0, rooms4);
-		Stocks stocks43 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms4);
-		Stocks stocks44 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms4);
-		Stocks stocks45 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms4);
-
-		Stocks stocks51 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms5);
-		Stocks stocks52 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms5);
-		Stocks stocks53 = new Stocks(LocalDate.of(2023, 12, 3), 0, rooms5);
-		Stocks stocks54 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms5);
-		Stocks stocks55 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms5);
-
-		Stocks stocks61 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms6);
-		Stocks stocks62 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms6);
-		Stocks stocks63 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms6);
-		Stocks stocks64 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms6);
-		Stocks stocks65 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms6);
-
-		Stocks stocks71 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms7);
-		Stocks stocks72 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms7);
-		Stocks stocks73 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms7);
-		Stocks stocks74 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms7);
-		Stocks stocks75 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms7);
+		// Stocks stocks41 = new Stocks(LocalDate.of(2023, 12, 1), 0, rooms4);
+		// Stocks stocks42 = new Stocks(LocalDate.of(2023, 12, 2), 0, rooms4);
+		// Stocks stocks43 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms4);
+		// Stocks stocks44 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms4);
+		// Stocks stocks45 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms4);
+		//
+		// Stocks stocks51 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms5);
+		// Stocks stocks52 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms5);
+		// Stocks stocks53 = new Stocks(LocalDate.of(2023, 12, 3), 0, rooms5);
+		// Stocks stocks54 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms5);
+		// Stocks stocks55 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms5);
+		//
+		// Stocks stocks61 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms6);
+		// Stocks stocks62 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms6);
+		// Stocks stocks63 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms6);
+		// Stocks stocks64 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms6);
+		// Stocks stocks65 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms6);
+		//
+		// Stocks stocks71 = new Stocks(LocalDate.of(2023, 12, 1), 4, rooms7);
+		// Stocks stocks72 = new Stocks(LocalDate.of(2023, 12, 2), 4, rooms7);
+		// Stocks stocks73 = new Stocks(LocalDate.of(2023, 12, 3), 4, rooms7);
+		// Stocks stocks74 = new Stocks(LocalDate.of(2023, 12, 4), 4, rooms7);
+		// Stocks stocks75 = new Stocks(LocalDate.of(2023, 12, 5), 4, rooms7);
 
 		// 재고 부분에서 - (날짜 2023,12,1 / 2023,12,2 / 2023,12,3)
 		// 1,2,6,7 번 방 통과
 		// 여행자 필터에서 - (4명)
 		// 2, 7 번방 통과
 
-		hotelRepository.save(hotels);
+		hotelRepository.saveAll(List.of(hotels, hotels2, hotels3));
 		roomRepository.saveAll(List.of(rooms1, rooms2, rooms3, rooms4, rooms5, rooms6, rooms7));
 		stockRepository.saveAll(
 			List.of(
 				stocks1, stocks12, stocks13, stocks14, stocks15,
 				stocks21, stocks22, stocks23, stocks24, stocks25,
-				stocks31, stocks32, stocks33, stocks34, stocks35,
-				stocks41, stocks42, stocks43, stocks44, stocks45,
-				stocks51, stocks52, stocks53, stocks54, stocks55,
-				stocks61, stocks62, stocks63, stocks64, stocks65,
-				stocks71, stocks72, stocks73, stocks74, stocks75
+				stocks31, stocks32, stocks33, stocks34, stocks35
+				// stocks41, stocks42, stocks43, stocks44, stocks45,
+				// stocks51, stocks52, stocks53, stocks54, stocks55,
+				// stocks61, stocks62, stocks63, stocks64, stocks65,
+				// stocks71, stocks72, stocks73, stocks74, stocks75
 			)
 		);
 
@@ -536,28 +554,26 @@ class HotelServiceTest {
 
 
 
-		ROOM TEST
-
-		6,7 번방이 나와야함.
-		List<Rooms> rooms = hotelRepository.getAvailableRooms(
+		// HOTEL TEST
+		//
+		// 6,7 번방이 나와야함.
+		List<Hotels> hotelsList = hotelRepository.getCheckInCheckOutAddressCityTravelers(
 			LocalDate.of(2023, 12, 1),
 			LocalDate.of(2023, 12, 4),
+			"test",
+			"test",
 			4
 		);
 
-		for (Rooms roomsTest : rooms) {
+		for (Hotels hotelTest : hotelsList) {
 
 			System.out.println("================");
 
 			System.out.println("room name");
-			System.out.println(roomsTest.getName());
-
-			System.out.println("roomPrice");
-			System.out.println(roomsTest.getPrice());
+			System.out.println(hotelTest.getName());
 
 			System.out.println("ID");
-			System.out.println(roomsTest.getId());
-
+			System.out.println(hotelTest.getId());
 		}
 
 
@@ -583,6 +599,9 @@ class HotelServiceTest {
 		// 	System.out.println("ID");
 		// 	System.out.println(roomsTest.getId());
 		//
+		// 	System.out.println("StockList");
+		// 	System.out.println(roomsTest.getStocksList().get(0));
+		//
 		// }
 
 
@@ -599,6 +618,7 @@ class HotelServiceTest {
 		// 	System.out.println("stock id  " + stocksTest.getDate());
 		//
 		// }
+
 	}
 
 }
