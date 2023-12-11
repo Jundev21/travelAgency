@@ -1,6 +1,9 @@
 package com.travelAgency.travelAgency.domain.room.entity;
 
+import java.util.List;
+
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
+import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +36,8 @@ public class Rooms {
 	private Boolean airCondition;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Hotels hotels;
+	@OneToMany(mappedBy = "rooms")
+	private List<Stocks> stocksList;
 
 	public Rooms(
 		String name,

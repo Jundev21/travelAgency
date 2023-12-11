@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
+import com.travelAgency.travelAgency.domain.room.entity.Rooms;
+import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
 
 public interface HotelRepositoryQueryDSL {
 
@@ -16,5 +18,8 @@ public interface HotelRepositoryQueryDSL {
 		String address,
 		int travelers
 	);
+
+	List<Rooms> getAvailableRooms(LocalDate checkIn, LocalDate checkOut, int travelers);
+	List<Stocks> getStocksFilter(LocalDate checkIn, LocalDate checkOut);
 
 }

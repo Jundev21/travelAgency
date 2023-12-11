@@ -18,7 +18,10 @@ import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsDetailsResp
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsResponseDto;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
+import com.travelAgency.travelAgency.domain.room.entity.Rooms;
+import com.travelAgency.travelAgency.domain.room.repository.RoomRepository;
 import com.travelAgency.travelAgency.domain.room.service.RoomService;
+import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +60,8 @@ public class HotelService {
 
 	public ResponseEntity<List<HotelsResponseDto>> getFilterHotels(int pageNo, int pageSize, LocalDate checkIn, LocalDate checkOut, String city, String address, int travelers) {
 
-		Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC));
+		Pageable pageable = PageRequest.of(pageNo, pageSize);
+		// Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC));
 		List<Hotels> hotels = hotelRepository.getCheckInCheckOutAddressCityTravelers(
 			checkIn,
 			checkOut,
@@ -70,10 +74,10 @@ public class HotelService {
 			.map(hotel -> HotelMapper.INSTANCE.hotelResponseDto(
 				hotel,
 				roomService.findLowestPrice(hotel.getId()),
-				0,
-				0,
-				0,
-				0,
+				1,
+				1,
+				1,
+				1,
 				false
 			)).toList();
 		return ResponseEntity.ok(hotelsResponseDtoList);
@@ -83,5 +87,18 @@ public class HotelService {
 		Hotels hotel = hotelRepository.findById(hotelsId).orElseThrow(() -> new NormalException(ErrorCode.NO_HOTEL_ID));
 		HotelsDetailsResponseDto hotelsDetailsResponseDto = HotelMapper.INSTANCE.hotelDetailsResponseDto(hotel);
 		return ResponseEntity.ok(hotelsDetailsResponseDto);
+	}
+
+
+	public List<Rooms> getRoomsDetailsInfo(LocalDate checkIn, LocalDate checkOut, int travelers){
+
+		return hotelRepository.getAvailableRooms(checkIn, checkOut, travelers);
+
+	}
+
+	public List<Stocks> getStocksDetailsInfo(LocalDate checkIn, LocalDate checkOut){
+
+		return hotelRepository.getStocksFilter(checkIn, checkOut);
+
 	}
 }

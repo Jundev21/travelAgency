@@ -20,7 +20,6 @@ import jakarta.persistence.PersistenceContext;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class RoomRepositoryQueryDSLImplTest {
 
-
 	@PersistenceContext
 	EntityManager em;
 	@Autowired
@@ -31,13 +30,12 @@ class RoomRepositoryQueryDSLImplTest {
 	@Autowired
 	private RoomService roomService;
 
-
 	@Test
-	public void testRoomPrice(){
+	public void testRoomPrice() {
 
 		Rooms rooms = new Rooms(
 			"test1",
-			"test1",
+			1,
 			"1000",
 			"test1",
 			"test1",
@@ -51,7 +49,7 @@ class RoomRepositoryQueryDSLImplTest {
 
 		Rooms rooms1 = new Rooms(
 			"test1",
-			"test1",
+			1,
 			"10000",
 			"test1",
 			"test1",
@@ -65,7 +63,7 @@ class RoomRepositoryQueryDSLImplTest {
 
 		Rooms rooms2 = new Rooms(
 			"test1",
-			"test1",
+			1,
 			"100000",
 			"test1",
 			"test1",
@@ -77,10 +75,9 @@ class RoomRepositoryQueryDSLImplTest {
 			null
 		);
 
-
 		Rooms rooms3 = new Rooms(
 			"test1",
-			"test1",
+			1,
 			"100",
 			"test1",
 			"test1",
@@ -94,10 +91,6 @@ class RoomRepositoryQueryDSLImplTest {
 
 		roomRepository.saveAll(List.of(rooms, rooms1, rooms2));
 
-
-
 	}
-
-
 
 }
