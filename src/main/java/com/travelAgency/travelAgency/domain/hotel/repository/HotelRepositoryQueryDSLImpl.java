@@ -79,6 +79,27 @@ public class HotelRepositoryQueryDSLImpl implements HotelRepositoryQueryDSL{
 			.fetch();
 	}
 
+
+	// Hibernate:
+	// select r1_0.id,r1_0.air_condition,r1_0.bed_num,r1_0.food,r1_0.hotels_id,r1_0.name,r1_0.price,r1_0.room_size,r1_0.shower,r1_0.travelers,r1_0.tv,r1_0.wifi from rooms r1_0
+	// where r1_0.id
+	// in(
+	// 		select s1_0.rooms_id
+	// 		from stocks s1_0
+	// 		where s1_0.date between ? and ?
+	// 		and s1_0.room_stocks>?
+	// 		and r1_0.travelers>=?
+	// 		group by s1_0.rooms_id
+	// 		having count(s1_0.rooms_id)=?
+	// 		)
+
+	// Hibernate:
+	// select h1_0.id,h1_0.address,h1_0.city,h1_0.country,h1_0.name,h1_0.stars
+	// from hotels h1_0
+	// where h1_0.id
+	// in(select r1_0.hotels_id from rooms r1_0 where r1_0.id in (?,?))
+
+
 	@Override
 	public List<Rooms> getAvailableRooms(LocalDate checkIn, LocalDate checkOut, int travelers) {
 

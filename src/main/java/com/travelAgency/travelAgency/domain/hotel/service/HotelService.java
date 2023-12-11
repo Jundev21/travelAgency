@@ -84,11 +84,14 @@ public class HotelService {
 	}
 
 	public ResponseEntity<HotelsDetailsResponseDto> getHotelDetailsInfo(long hotelsId) {
-		Hotels hotel = hotelRepository.findById(hotelsId).orElseThrow(() -> new NormalException(ErrorCode.NO_HOTEL_ID));
+		Hotels hotel = getHotel(hotelsId);
 		HotelsDetailsResponseDto hotelsDetailsResponseDto = HotelMapper.INSTANCE.hotelDetailsResponseDto(hotel);
 		return ResponseEntity.ok(hotelsDetailsResponseDto);
 	}
 
+	public Hotels getHotel(long hotelsId) {
+		return hotelRepository.findById(hotelsId).orElseThrow(() -> new NormalException(ErrorCode.NO_HOTEL_ID));
+	}
 
 	public List<Rooms> getRoomsDetailsInfo(LocalDate checkIn, LocalDate checkOut, int travelers){
 
