@@ -3,6 +3,7 @@ package com.travelAgency.travelAgency.domain.room.entity;
 import java.util.List;
 
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
+import com.travelAgency.travelAgency.domain.reservation.entity.Reservations;
 import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
 
 import jakarta.persistence.Entity;
@@ -38,6 +39,8 @@ public class Rooms {
 	private Hotels hotels;
 	@OneToMany(mappedBy = "rooms")
 	private List<Stocks> stocksList;
+	@OneToMany(mappedBy = "rooms")
+	private List<Reservations> reservationsList;
 
 	public Rooms(
 		String name,
