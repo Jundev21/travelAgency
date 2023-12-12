@@ -1,13 +1,17 @@
 package com.travelAgency.travelAgency.domain.hotel.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.travelAgency.travelAgency.domain.room.entity.Rooms;
+import com.travelAgency.travelAgency.domain.wishList.entity.WishLists;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,9 +30,11 @@ public class Hotels {
 	private String city;
 	private String country;
 	@OneToMany(mappedBy = "hotels")
-	private List<Rooms> roomsList;
+	private List<Rooms> roomsList = new ArrayList<>();
 	@OneToMany(mappedBy = "hotels")
-	private List<HotelsImages> hotelsImagesList;
+	private List<HotelsImages> hotelsImagesList= new ArrayList<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	private WishLists wishLists;
 
 
 	public Hotels(
@@ -36,13 +42,15 @@ public class Hotels {
 		String name,
 		String stars,
 		String city,
-		String country
+		String country,
+		WishLists wishLists
 		){
 		this.address = address;
 		this.name = name;
 		this.stars = stars;
 		this.city = city;
 		this.country = country;
+		this.wishLists = wishLists;
 	}
 
 
