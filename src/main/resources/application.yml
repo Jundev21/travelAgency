@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3309/travelAgency?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
   h2:
     console:
       enabled: true
@@ -7,6 +12,3 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
-
-jwt :
-  security-key: 612E3DFC176A8E32A3E59C2AC65D2612E3DFC176A8E32A3E59C2AC65D2
