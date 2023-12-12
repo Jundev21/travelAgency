@@ -11,8 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.travelAgency.travelAgency.domain.common.ErrorCode;
-import com.travelAgency.travelAgency.domain.common.NormalException;
+import com.travelAgency.travelAgency.domain.common.error.ErrorCode;
+import com.travelAgency.travelAgency.domain.common.exception.NormalException;
 import com.travelAgency.travelAgency.domain.hotel.dto.HotelMapper;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsDetailsResponseDto;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsResponseDto;
@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class HotelService {
 
 	private final HotelRepository hotelRepository;
-	private final RoomService roomService;
+	private final RoomRepository roomRepository;
 
 	public ResponseEntity<List<HotelsResponseDto>> getAllHotels(int pageNo, int pageSize) {
 
@@ -45,7 +45,7 @@ public class HotelService {
 			.map(hotel ->
 				HotelMapper.INSTANCE.hotelResponseDto(
 					hotel,
-					roomService.findLowestPrice(hotel.getId()),
+					roomRepository.getLowestPrice(hotel.getId()),
 					hotels.getNumber(),
 					hotels.getSize(),
 					hotels.getTotalElements(),
@@ -73,7 +73,7 @@ public class HotelService {
 		List<HotelsResponseDto> hotelsResponseDtoList = hotels.stream()
 			.map(hotel -> HotelMapper.INSTANCE.hotelResponseDto(
 				hotel,
-				roomService.findLowestPrice(hotel.getId()),
+				roomRepository.getLowestPrice(hotel.getId()),
 				1,
 				1,
 				1,
@@ -99,7 +99,7 @@ public class HotelService {
 
 	}
 
-	public List<Stocks> getStocksDetailsInfo(LocalDate checkIn, LocalDate checkOut){
+	public  List<Stocks> getStocksDetailsInfo(LocalDate checkIn, LocalDate checkOut){
 
 		return hotelRepository.getStocksFilter(checkIn, checkOut);
 
