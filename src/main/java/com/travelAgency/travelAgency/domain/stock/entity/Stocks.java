@@ -34,4 +34,14 @@ public class Stocks {
 		this.roomStocks = roomStocks;
 		this.rooms = room;
 	}
+
+	public void increaseRoomStocks(){
+			this.roomStocks += 1;
+	}
+
+	public void decreaseRoomStocks(){
+		if(roomStocks > 0) {
+			this.roomStocks -= 1;
+		}
+	}
 }
