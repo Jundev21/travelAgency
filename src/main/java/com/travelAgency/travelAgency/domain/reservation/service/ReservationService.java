@@ -44,7 +44,7 @@ public class ReservationService {
 
 		Rooms room = roomRepository.findById(roomId).orElseThrow(() -> new NormalException(ErrorCode.NO_ROOM_ID));
 		Users user = userRepository.findByEmail(principal.getName()).orElseThrow(()-> new NormalException(ErrorCode.NO_USER_EMAIL));
-		Stocks stock = stockRepository.findByRoomId(roomId);
+		Stocks stock = stockRepository.findByRooms(room);
 
 		Reservations newReservations = new Reservations(
 			reservationRequest.getTravelers(),
