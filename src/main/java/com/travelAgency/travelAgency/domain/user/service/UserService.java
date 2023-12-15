@@ -6,6 +6,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.travelAgency.travelAgency.domain.common.error.ErrorCode;
+import com.travelAgency.travelAgency.domain.common.exception.NormalException;
 import com.travelAgency.travelAgency.domain.jwt.JwtService;
 import com.travelAgency.travelAgency.domain.user.dto.UserMapper;
 import com.travelAgency.travelAgency.domain.user.dto.request.LoginRequestDTO;
@@ -29,7 +31,9 @@ public class UserService {
 
 	public ResponseEntity<RegisterResponseDTO> registerMember(RegisterRequestDTO registerRequest) {
 
-
+		if(userRepository.existsByEmail(registerRequest.getEmail())){
+			throw new NormalException(ErrorCode.ALREADY_REGISTER_USER);
+		}
 
 		Users newUsers = new Users(
 			registerRequest.getName(),
