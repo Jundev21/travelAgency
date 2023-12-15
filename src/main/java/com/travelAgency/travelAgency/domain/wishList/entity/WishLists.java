@@ -9,6 +9,7 @@ import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.user.entity.Users;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,10 +24,11 @@ public class WishLists {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Users users;
-	@OneToMany( mappedBy = "wishLists")
-	private List<Hotels> hotelsList = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Hotels hotels;
+
 
 
 
