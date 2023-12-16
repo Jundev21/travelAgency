@@ -31,7 +31,7 @@ public class RoomService {
 				.toList());
 	}
 
-	public String findLowestPrice(Long hotelId){
+	public int findLowestPrice(Long hotelId){
 		// 룸 최저가가 각 호텔에 맞는 최저가를 리턴해준다.
 		return roomRepository.getLowestPrice(hotelId);
 	}

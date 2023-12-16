@@ -43,8 +43,7 @@ class RoomRepositoryQueryDSLImplTest {
 			true,
 			true,
 			true,
-			true,
-			null
+			true
 		);
 
 		Rooms rooms1 = new Rooms(
@@ -57,8 +56,7 @@ class RoomRepositoryQueryDSLImplTest {
 			true,
 			true,
 			true,
-			true,
-			null
+			true
 		);
 
 		Rooms rooms2 = new Rooms(
@@ -71,8 +69,7 @@ class RoomRepositoryQueryDSLImplTest {
 			true,
 			true,
 			true,
-			true,
-			null
+			true
 		);
 
 		Rooms rooms3 = new Rooms(
@@ -85,8 +82,7 @@ class RoomRepositoryQueryDSLImplTest {
 			true,
 			true,
 			true,
-			true,
-			null
+			true
 		);
 
 		roomRepository.saveAll(List.of(rooms, rooms1, rooms2));

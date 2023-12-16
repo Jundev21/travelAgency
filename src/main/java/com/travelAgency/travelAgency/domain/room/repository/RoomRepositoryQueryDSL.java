@@ -6,5 +6,5 @@ import com.travelAgency.travelAgency.domain.room.entity.Rooms;
 
 public interface RoomRepositoryQueryDSL {
 
-	String getLowestPrice(Long hotelId);
+	int getLowestPrice(Long hotelId);
 }

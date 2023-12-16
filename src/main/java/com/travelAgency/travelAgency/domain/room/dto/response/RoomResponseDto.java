@@ -12,7 +12,7 @@ import lombok.Getter;
 public class RoomResponseDto {
 	private String name;
 	private int travelers;
-	private String price;
+	private int price;
 	private String bedNum;
 	private String roomSize;
 	private Boolean wifi;
@@ -20,5 +20,4 @@ public class RoomResponseDto {
 	private Boolean shower;
 	private Boolean food;
 	private Boolean airCondition;
-	private Hotels hotels;
 }
