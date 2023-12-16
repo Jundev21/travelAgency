@@ -16,6 +16,7 @@ import com.travelAgency.travelAgency.domain.review.entity.Reviews;
 import com.travelAgency.travelAgency.domain.wishList.entity.WishLists;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
@@ -38,24 +39,23 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 50, nullable = false)
     private String name;
     private int age;
+    @Column(length = 100, nullable = false)
     private String email;
+    @Column(length = 100, nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
     @CreatedDate
     private LocalDateTime createdAt;
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Reservations> reservations;
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<WishLists> wishListsList;
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private List<Reviews> reviewsList;
-
-
-
-
 
     public Users(String name, int age, String email, String password, Role role){
         this.name = name;
