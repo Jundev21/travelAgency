@@ -2,18 +2,24 @@ package com.travelAgency.travelAgency.domain.reservation.entity;
 
 import java.time.LocalDate;
 
+import com.travelAgency.travelAgency.domain.payment.entity.Payments;
 import com.travelAgency.travelAgency.domain.room.entity.Rooms;
 import com.travelAgency.travelAgency.domain.user.entity.Users;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class Reservations {
 
 	@Id
@@ -27,10 +33,12 @@ public class Reservations {
 	private String payStatus;
 	private String reservationNumber;
 	private String travelers;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Users users;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Rooms rooms;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Payments payments;
 
 	public Reservations(
 		String travelers,
