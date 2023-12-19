@@ -1,5 +1,7 @@
 package com.travelAgency.travelAgency.domain.user.controller;
 
+import java.io.IOException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import com.travelAgency.travelAgency.domain.user.dto.response.RegisterResponseDT
 import com.travelAgency.travelAgency.domain.user.entity.Users;
 import com.travelAgency.travelAgency.domain.user.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +41,14 @@ public class UserController {
 		@RequestBody RegisterRequestDTO registerRequest
 	) {
 		return userService.registerMember(registerRequest);
+	}
+
+	@PostMapping("/refresh-token")
+	public LoginResponseDTO refreshToken(
+		HttpServletRequest request,
+		HttpServletResponse response
+	) throws IOException {
+		return userService.refreshToken(request, response);
 	}
 
 	@PostMapping("/logout")

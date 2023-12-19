@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.travelAgency.travelAgency.domain.common.error.ErrorCode;
-import com.travelAgency.travelAgency.domain.common.exception.NormalException;
+import com.travelAgency.travelAgency.common.error.ErrorCode;
+import com.travelAgency.travelAgency.common.exception.NormalException;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
 import com.travelAgency.travelAgency.domain.review.dto.ReviewMapper;

@@ -4,11 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
 import com.travelAgency.travelAgency.domain.room.entity.Rooms;
 import com.travelAgency.travelAgency.domain.room.service.RoomService;
@@ -31,12 +33,21 @@ class RoomRepositoryQueryDSLImplTest {
 	private RoomService roomService;
 
 	@Test
+	@DisplayName("Lowest room price")
 	public void testRoomPrice() {
+
+		Hotels hotels1 = new Hotels(
+			"test",
+			"hotel1",
+			"test",
+			"test",
+			"test"
+		);
 
 		Rooms rooms = new Rooms(
 			"test1",
 			1,
-			"1000",
+			1000,
 			"test1",
 			"test1",
 			true,
@@ -49,7 +60,7 @@ class RoomRepositoryQueryDSLImplTest {
 		Rooms rooms1 = new Rooms(
 			"test1",
 			1,
-			"10000",
+			10000,
 			"test1",
 			"test1",
 			true,
@@ -62,7 +73,7 @@ class RoomRepositoryQueryDSLImplTest {
 		Rooms rooms2 = new Rooms(
 			"test1",
 			1,
-			"100000",
+			100000,
 			"test1",
 			"test1",
 			true,
@@ -75,7 +86,7 @@ class RoomRepositoryQueryDSLImplTest {
 		Rooms rooms3 = new Rooms(
 			"test1",
 			1,
-			"100",
+			100,
 			"test1",
 			"test1",
 			true,
@@ -85,8 +96,10 @@ class RoomRepositoryQueryDSLImplTest {
 			true
 		);
 
+		Hotels savedHotel = hotelRepository.save(hotels1);
 		roomRepository.saveAll(List.of(rooms, rooms1, rooms2));
-
+		int lowestPrice = roomService.findLowestPrice(savedHotel.getId());
+		assertEquals(lowestPrice, 100);
 	}
 
 }
