@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.jwt;
+package com.travelAgency.travelAgency.jwt;
 
 import java.io.IOException;
 
@@ -44,8 +44,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		} else {
 			jwtToken = requestHeader.substring(tokenPreFix.length());
 
-
-			//extract userEmail from jwt token
 			userEmail = jwtService.extractUserName(jwtToken);
 
 			if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -63,10 +61,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 					SecurityContextHolder.getContext().setAuthentication(authToken);
 				}
 			}
-
 			filterChain.doFilter(request, response);
-
 		}
-
 	}
 }

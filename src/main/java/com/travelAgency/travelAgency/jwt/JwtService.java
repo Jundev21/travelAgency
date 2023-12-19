@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.jwt;
+package com.travelAgency.travelAgency.jwt;
 
 import java.security.Key;
 import java.util.Base64;
@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -22,16 +23,21 @@ import jakarta.websocket.Decoder;
 @Service
 public class JwtService {
 
-	private static final String secretKey = "612E3DFC176A8E32A3E59C2AC65D2612E3DFC176A8E32A3E59C2AC65D2";
-	public String extractUserName(String jwtToken) {
+	@Value("${jwt.secretKey}")
+	private static String secretKey;
+	@Value("${jwt.expiration}")
+	private long jwtExpiration;
+	@Value("${jwt.refresh-token.expiration}")
+	private long refreshExpiration;
 
+
+	public String extractUserName(String jwtToken) {
 		return extractClaim(jwtToken,Claims::getSubject);
 	}
 
 	public <T> T extractClaim(String token, Function<Claims,T> claimsResolver){
 		final Claims claims = extractAllClaims(token);
 		return claimsResolver.apply(claims);
-
 	}
 
 	public Claims extractAllClaims(String jwtToken){
@@ -43,27 +49,30 @@ public class JwtService {
 	}
 
 	public Key getSigningKey() {
-
 		byte[] keyBytes = Decoders.BASE64.decode(secretKey);
 		return Keys.hmacShaKeyFor(keyBytes);
-
 	}
 
 	public String generateToken(UserDetails userDetails){
-
-		return generateToken(new HashMap<>(), userDetails);
+		return generateToken(new HashMap<>(), userDetails,jwtExpiration);
 	}
 
+	public String generateRefreshToken(
+		UserDetails userDetails
+	) {
+		return generateToken(new HashMap<>(), userDetails, refreshExpiration);
+	}
 
 	public String generateToken(
 		Map<String,Object> extraClaims,
-		UserDetails userDetails
+		UserDetails userDetails,
+		long jwtExpiration
 	){
 		return Jwts.builder()
 			.setClaims(extraClaims)
 			.setSubject(userDetails.getUsername())
 			.setIssuedAt(new Date(System.currentTimeMillis()))
-			.setExpiration(new Date(System.currentTimeMillis() + 86400000))
+			.setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
 			.signWith(getSigningKey(),SignatureAlgorithm.HS256)
 			.compact();
 	}
