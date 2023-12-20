@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.common.error;
+package com.travelAgency.travelAgency.common.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

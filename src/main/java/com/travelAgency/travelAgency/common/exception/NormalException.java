@@ -1,6 +1,6 @@
-package com.travelAgency.travelAgency.domain.common.exception;
+package com.travelAgency.travelAgency.common.exception;
 
-import com.travelAgency.travelAgency.domain.common.error.ErrorCode;
+import com.travelAgency.travelAgency.common.error.ErrorCode;
 
 import lombok.Getter;
 @Getter

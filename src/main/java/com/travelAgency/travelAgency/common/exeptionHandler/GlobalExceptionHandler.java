@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.common.exeptionHandler;
+package com.travelAgency.travelAgency.common.exeptionHandler;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
