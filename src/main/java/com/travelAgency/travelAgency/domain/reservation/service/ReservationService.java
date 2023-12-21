@@ -3,6 +3,7 @@ package com.travelAgency.travelAgency.domain.reservation.service;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import com.travelAgency.travelAgency.domain.reservation.dto.response.Reservation
 import com.travelAgency.travelAgency.domain.reservation.dto.response.ReservationToEntity;
 import com.travelAgency.travelAgency.domain.reservation.entity.Reservations;
 import com.travelAgency.travelAgency.domain.reservation.repository.ReservationRepository;
+import com.travelAgency.travelAgency.domain.reservation.reservationEnum.ReservationEnum;
 import com.travelAgency.travelAgency.domain.room.entity.Rooms;
 import com.travelAgency.travelAgency.domain.room.repository.RoomRepository;
 import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
@@ -39,20 +41,29 @@ public class ReservationService {
 	private final StockRepository stockRepository;
 	public ResponseEntity<String> enrollReservation(
 		Principal principal,
-		long hotelId,
 		long roomId,
 		ReservationRequest reservationRequest
 	) {
-
+		// 예약하기 위해서는 해당방이 예약 가능한 방인지를 먼저 확인해야한다.
 		Rooms room = roomRepository.findById(roomId).orElseThrow(() -> new NormalException(ErrorCode.NO_ROOM_ID));
 		Users user = userRepository.findByEmail(principal.getName()).orElseThrow(()-> new NormalException(ErrorCode.NO_USER_EMAIL));
-		List<Stocks> stocksList= stockRepository.findByRooms(room).orElseThrow(()-> new NormalException(ErrorCode.NO_ROOMS_STOCKS));
+		Long isAvailable = roomRepository.checkAvailableRooms(
+			reservationRequest.getCheckIn(),
+			reservationRequest.getCheckOut(),
+			reservationRequest.getTravelers(),
+			roomId
+		);
 
-		stocksList.forEach(Stocks::decreaseRoomStocks);
+		if(isAvailable == null){
+			throw (new NormalException(ErrorCode.NO_RESERVATION_ID));
+		}
+
+
+
 
 		Reservations newReservations = ReservationMapper.INSTANCE.reservationConstructToEntity(
 			reservationRequest,
-			"Not PAY",
+			"미지불",
 			user.getId().toString(),
 			room,
 			user

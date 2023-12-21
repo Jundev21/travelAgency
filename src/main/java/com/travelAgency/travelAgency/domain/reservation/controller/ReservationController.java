@@ -34,11 +34,10 @@ public class ReservationController {
 
 	@PostMapping("/hotel/{hotelId}/room/{roomId}/reservation")
 	public ResponseEntity<String> enrollReservation(
-		@PathVariable long hotelId,
 		@PathVariable long roomId,
 		@RequestBody ReservationRequest reservationRequest,
 		Principal principal
 	){
-		return reservationService.enrollReservation(principal ,hotelId, roomId, reservationRequest);
+		return reservationService.enrollReservation(principal ,roomId, reservationRequest);
 	}
 }

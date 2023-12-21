@@ -30,7 +30,7 @@ public class Reservations {
 	private String name;
 	private String phoneNumber;
 	private String email;
-	private String payStatus;
+	private String payStatus = "false";
 	private String reservationNumber;
 	private String travelers;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -63,5 +63,14 @@ public class Reservations {
 		this.users = users;
 		this.rooms = rooms;
 	}
+
+	public void updatePayStatus(){
+		this.payStatus = "success to pay";
+	}
+
+	public void setReservation(Payments payments) {
+		this.payments = payments;
+	}
+
 
 }
