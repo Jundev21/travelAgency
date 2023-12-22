@@ -9,6 +9,7 @@ import org.mapstruct.factory.Mappers;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsDetailsResponseDto;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsImagesDto;
 import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsResponseDto;
+import com.travelAgency.travelAgency.domain.hotel.dto.response.HotelsResponseForReservationDto;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.entity.HotelsImages;
 
@@ -19,18 +20,18 @@ public interface HotelMapper {
 	@Mapping(source = "hotels.hotelsImagesList", target = "hotelsImagesDtoList")
 	HotelsResponseDto hotelResponseDto(
 		Hotels hotels,
-		String lowestPrice,
+		int lowestPrice,
 		int pageNo,
 		int pageSize,
 		long totalElements,
 		int totalPages,
 		boolean lastPage
 	);
-
 	HotelsImagesDto hotelsImagesDto(HotelsImages hotelsImages);
-
 	@Mapping(source = "hotels.roomsList", target = "roomsDtoList")
 	@Mapping(source = "hotels.hotelsImagesList", target = "hotelsImagesDtoList")
 	HotelsDetailsResponseDto hotelDetailsResponseDto(Hotels hotels);
+
+	HotelsResponseForReservationDto hotelsResponseForReservationDto(Hotels hotels);
 
 }
