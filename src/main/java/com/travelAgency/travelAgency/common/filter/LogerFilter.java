@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.common.filter;
+package com.travelAgency.travelAgency.common.filter;
 
 import java.io.IOException;
 import java.util.Enumeration;
