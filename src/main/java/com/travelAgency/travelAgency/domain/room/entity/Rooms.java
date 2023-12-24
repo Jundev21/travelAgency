@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
+import com.travelAgency.travelAgency.domain.hotel.entity.HotelsImages;
 import com.travelAgency.travelAgency.domain.reservation.entity.Reservations;
 import com.travelAgency.travelAgency.domain.stock.entity.Stocks;
 
@@ -45,6 +46,8 @@ public class Rooms {
 	private List<Stocks> stocksList = new ArrayList<>();
 	@OneToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
 	private List<Reservations> reservationsList= new ArrayList<>();;
+	@OneToMany(mappedBy = "rooms", cascade = CascadeType.ALL)
+	private List<RoomsImages> roomsImagesList= new ArrayList<>();
 
 	public Rooms(
 		String name,

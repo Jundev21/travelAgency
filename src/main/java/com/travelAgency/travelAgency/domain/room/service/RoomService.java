@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.travelAgency.travelAgency.domain.common.exception.NormalException;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
-import com.travelAgency.travelAgency.domain.hotel.service.HotelService;
 import com.travelAgency.travelAgency.domain.room.dto.RoomMapper;
 import com.travelAgency.travelAgency.domain.room.dto.response.RoomResponseDto;
 import com.travelAgency.travelAgency.domain.room.repository.RoomRepository;
