@@ -2,6 +2,7 @@ package com.travelAgency.travelAgency.domain.reservation.dto.response;
 
 import java.time.LocalDate;
 
+import com.travelAgency.travelAgency.domain.payment.payEnum.PayEnum;
 import com.travelAgency.travelAgency.domain.room.dto.response.RoomResponseDto;
 import com.travelAgency.travelAgency.domain.user.entity.Users;
 
@@ -16,7 +17,7 @@ public class ReservationToEntity {
 	private String name;
 	private String phoneNumber;
 	private String email;
-	private String payStatus;
+	private PayEnum payStatus;
 	private String reservationNumber;
 	private Users users;
 	private RoomResponseDto roomResponseDto;

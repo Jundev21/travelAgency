@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
+import com.travelAgency.travelAgency.domain.payment.payEnum.PayEnum;
 import com.travelAgency.travelAgency.domain.reservation.dto.request.ReservationRequest;
 import com.travelAgency.travelAgency.domain.reservation.dto.response.ReservationConformDto;
 import com.travelAgency.travelAgency.domain.reservation.dto.response.ReservationToEntity;
@@ -12,6 +13,8 @@ import com.travelAgency.travelAgency.domain.reservation.entity.Reservations;
 import com.travelAgency.travelAgency.domain.room.dto.response.RoomResponseDto;
 import com.travelAgency.travelAgency.domain.room.entity.Rooms;
 import com.travelAgency.travelAgency.domain.user.entity.Users;
+
+import jakarta.persistence.Enumerated;
 
 @Mapper(componentModel = "spring")
 public interface ReservationMapper {
@@ -25,7 +28,7 @@ public interface ReservationMapper {
 	@Mapping(source = "reservationRequest.email", target = "email")
 	Reservations reservationConstructToEntity(
 		ReservationRequest reservationRequest,
-		String payStatus,
+		PayEnum payStatus,
 		String reservationNumber,
 		Rooms rooms,
 		Users users

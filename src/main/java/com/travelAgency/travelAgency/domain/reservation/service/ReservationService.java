@@ -12,6 +12,7 @@ import com.travelAgency.travelAgency.common.error.ErrorCode;
 import com.travelAgency.travelAgency.common.exception.NormalException;
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
 import com.travelAgency.travelAgency.domain.hotel.repository.HotelRepository;
+import com.travelAgency.travelAgency.domain.payment.payEnum.PayEnum;
 import com.travelAgency.travelAgency.domain.reservation.dto.ReservationMapper;
 import com.travelAgency.travelAgency.domain.reservation.dto.request.ReservationRequest;
 import com.travelAgency.travelAgency.domain.reservation.dto.response.ReservationConformDto;
@@ -58,19 +59,16 @@ public class ReservationService {
 			throw (new NormalException(ErrorCode.NO_RESERVATION_ID));
 		}
 
-
-
-
 		Reservations newReservations = ReservationMapper.INSTANCE.reservationConstructToEntity(
 			reservationRequest,
-			"미지불",
+			PayEnum.StandBy,
 			user.getId().toString(),
 			room,
 			user
 		);
 
 		reservationRepository.save(newReservations);
-		return ResponseEntity.ok("Success");
+		return ResponseEntity.ok(newReservations.getRooms().getHotels().getName() + " 호텔 " + newReservations.getRooms().getName() + " 방이 예약되었습니다 ");
 	}
 
 	public ResponseEntity<ReservationConformDto> getReservationInfo(long reservationID, Users users) {
