@@ -1,9 +1,12 @@
 spring:
+#  config:
+#    activate:
+#      on-profile: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3309/travelAgency?serverTimezone=Asia/Seoul
-    username: root
-    password: 1234
+    username: ${MYSQL_USER_NAME}
+    password: ${MYSQL_USER_PASSWORD}
   h2:
     console:
       enabled: true
@@ -12,3 +15,11 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+
+
+
+jwt:
+  secretKey: 612E3DFC176A8E32A3E59C2AC65D2612E3DFC176A8E32A3E59C2AC65D2
+  expiration: 86400000 # a day
+  refresh-token:
+    expiration: 604800000 # 7 days
