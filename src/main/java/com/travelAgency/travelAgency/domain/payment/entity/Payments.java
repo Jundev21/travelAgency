@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.travelAgency.travelAgency.domain.payment.payEnum.PayEnum;
 import com.travelAgency.travelAgency.domain.reservation.entity.Reservations;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +26,9 @@ public class Payments {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String price; // 결제 금액
-	private String paymentMethod;
+
+	@Enumerated(EnumType.STRING)
+	private PayEnum paymentMethod;
 	@CreatedDate
 	private LocalDateTime paymentDate;
 	@OneToMany(mappedBy = "payments", cascade = CascadeType.ALL)
