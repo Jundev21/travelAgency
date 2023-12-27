@@ -15,10 +15,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class WishLists {
 
 	@Id
@@ -30,7 +34,11 @@ public class WishLists {
 	private Hotels hotels;
 
 
-
-
-
+	public WishLists(
+		Users users,
+		Hotels hotels
+	){
+		this.users = users;
+		this.hotels = hotels;
+	}
 }
