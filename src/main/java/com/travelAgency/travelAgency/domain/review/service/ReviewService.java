@@ -1,6 +1,7 @@
 package com.travelAgency.travelAgency.domain.review.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class ReviewService {
 		reviewRepository.save(newReview);
 
 
-		return ResponseEntity.ok("등록 성공했습니다.");
+		return ResponseEntity.ok("리뷰 등록 성공했습니다.");
 
 	}
 
@@ -77,15 +78,16 @@ public class ReviewService {
 			reviews.updateReviewRate(reviewRequestDto.getReviewRates());
 		}
 
-		if (!reviewRequestDto.getContent().equals(reviews.getContent())) {
+		if (!Objects.isNull(reviewRequestDto.getContent() )) {
 			reviews.updateContent(reviewRequestDto.getContent());
 		}
 
-		if (!reviewRequestDto.getTitle().equals(reviews.getTitle())) {
+		if (!Objects.isNull(reviewRequestDto.getTitle())) {
 			reviews.updateTitle(reviewRequestDto.getTitle());
 		}
 
-		return ResponseEntity.ok("수정 성공했습니다.");
+		return ResponseEntity.ok("리뷰 수정 성공했습니다.");
+
 	}
 
 	public ResponseEntity<String> deleteReview(long reviewId, Users users) {

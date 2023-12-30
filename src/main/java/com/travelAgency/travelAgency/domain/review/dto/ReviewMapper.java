@@ -1,6 +1,7 @@
 package com.travelAgency.travelAgency.domain.review.dto;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import com.travelAgency.travelAgency.domain.hotel.entity.Hotels;
@@ -13,6 +14,9 @@ import com.travelAgency.travelAgency.domain.user.entity.Users;
 public interface ReviewMapper {
 
 	ReviewMapper INSTANCE = Mappers.getMapper(ReviewMapper.class);
+
+
+	@Mapping(source = "reviews.users", target = "users")
 	GetReviewsDto getReviewDto(Reviews reviews);
 	Reviews toEntity(ReviewRequestDto getReviewsDto, Hotels hotels, Users users);
 
