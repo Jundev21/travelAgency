@@ -21,7 +21,7 @@ services:
       #     이미지명
     image: jundev21/travel-agency-database
     environment:
-      - MYSQL_DATABASE=mydb
+      - MYSQL_DATABASE=travelAgency
       - MYSQL_ROOT_PASSWORD=${MYSQL_USER_PASSWORD}
 
     ports:
