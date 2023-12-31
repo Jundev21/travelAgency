@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.jwt;
+package com.travelAgency.travelAgency.jwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
