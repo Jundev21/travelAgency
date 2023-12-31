@@ -11,7 +11,9 @@ public enum ErrorCode implements ErrorCodeInterface {
 	NO_USER_EMAIL("해당 사용자가 없습니다"),
 	NO_REVIEW_ID("해당 리뷰가 없습니다."),
 	ALREADY_REGISTER_USER("이미 등록한 회원입니다."),
-	NO_ROOMS_STOCKS("해당 객실의 재고가 없습니다.")
+	NO_ROOMS_STOCKS("해당 객실의 재고가 없습니다."),
+	NO_RESERVATION_ID("해당 예약이 없습니다."),
+	NO_AVAILABLE_ROOM("해당 방은 예약이 불가능합니다.")
 	;
 	private final String errorMessage;
 	}
