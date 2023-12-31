@@ -9,6 +9,6 @@ import com.travelAgency.travelAgency.domain.user.dto.response.RegisterResponseDT
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 	UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-	RegisterResponseDTO registerResponseDto(String jwtToken);
-	LoginResponseDTO logInResponseDto(String accessToken, String refreshToken);
+	RegisterResponseDTO registerResponseDto(String jwtToken,String message);
+	LoginResponseDTO logInResponseDto(String accessToken, String refreshToken, String message);
 }

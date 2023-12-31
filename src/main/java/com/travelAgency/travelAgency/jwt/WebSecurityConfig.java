@@ -1,8 +1,8 @@
-package com.travelAgency.travelAgency.domain.jwt;
+package com.travelAgency.travelAgency.jwt;
 
 
-import com.travelAgency.travelAgency.domain.jwt.JwtAuthenticationFilter;
-import com.travelAgency.travelAgency.domain.jwt.JwtService;
+import com.travelAgency.travelAgency.jwt.JwtAuthenticationFilter;
+import com.travelAgency.travelAgency.jwt.JwtService;
 import com.travelAgency.travelAgency.domain.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,15 +33,16 @@ public class WebSecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     // private final LogoutHandler logoutHandler;
 
-
-
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
             .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
     }
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+
         return http
             .httpBasic(HttpBasicConfigurer::disable)
             .csrf(CsrfConfigurer::disable)
@@ -52,6 +53,12 @@ public class WebSecurityConfig {
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/register")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/error")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/logout")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/api-docs")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui-custom.html")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/v3/api-docs/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/api-docs/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui.html")).permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

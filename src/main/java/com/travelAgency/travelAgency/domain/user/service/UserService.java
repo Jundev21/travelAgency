@@ -55,7 +55,7 @@ public class UserService {
 
 		String jwtToken = jwtService.generateToken(newUsers);
 
-		return ResponseEntity.ok(UserMapper.INSTANCE.registerResponseDto(jwtToken));
+		return ResponseEntity.ok(UserMapper.INSTANCE.registerResponseDto(jwtToken,"회원가입에 성공하였습니다."));
 
 	}
 
@@ -72,7 +72,7 @@ public class UserService {
 		String jwtToken = jwtService.generateToken(newUsers);
 		String jwtRefreshToken = jwtService.generateRefreshToken(newUsers);
 
-		return ResponseEntity.ok(UserMapper.INSTANCE.logInResponseDto(jwtToken,jwtRefreshToken));
+		return ResponseEntity.ok(UserMapper.INSTANCE.logInResponseDto(jwtToken,jwtRefreshToken,"로그인에 성공하였습니다."));
 	}
 
 	public LoginResponseDTO refreshToken(
