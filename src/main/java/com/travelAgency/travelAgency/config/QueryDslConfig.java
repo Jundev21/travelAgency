@@ -1,4 +1,4 @@
-package com.travelAgency.travelAgency.domain.config;
+package com.travelAgency.travelAgency.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
