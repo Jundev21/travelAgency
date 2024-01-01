@@ -11,28 +11,32 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 public class Stocks {
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private Long id;
 	private LocalDate date;
 	private int roomStocks;
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "rooms_id")
 	private Rooms rooms;
 
 	public Stocks(
 		LocalDate date,
-		int roomStocks,
-		Rooms room
+		int roomStocks
 	){
 		this.date = date;
 		this.roomStocks = roomStocks;
-		this.rooms = room;
 	}
 
 	public void increaseRoomStocks(){
@@ -40,8 +44,16 @@ public class Stocks {
 	}
 
 	public void decreaseRoomStocks(){
-		if(roomStocks > 0) {
+		if(this.roomStocks > 0) {
 			this.roomStocks -= 1;
 		}
 	}
+
+
+	public void addRoom(Rooms rooms){
+
+		this.rooms = rooms;
+
+	}
+
 }
