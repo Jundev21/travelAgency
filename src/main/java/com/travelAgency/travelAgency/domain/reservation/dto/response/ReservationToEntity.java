@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.travelAgency.travelAgency.domain.payment.payEnum.PayEnum;
 import com.travelAgency.travelAgency.domain.room.dto.response.RoomResponseDto;
+import com.travelAgency.travelAgency.domain.user.dto.response.BasicUserInfoDto;
 import com.travelAgency.travelAgency.domain.user.entity.Users;
 
 import lombok.Builder;
@@ -19,6 +20,6 @@ public class ReservationToEntity {
 	private String email;
 	private PayEnum payStatus;
 	private String reservationNumber;
-	private Users users;
-	private RoomResponseDto roomResponseDto;
+	private BasicUserInfoDto users;
+	private RoomResponseDto roomInfo;
 }

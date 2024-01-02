@@ -21,7 +21,7 @@ public interface ReservationMapper {
 	ReservationMapper INSTANCE = Mappers.getMapper(ReservationMapper.class);
 
 
-	@Mapping(source = "reservations.rooms", target = "roomResponseDto")
+	@Mapping(source = "reservations.rooms", target = "roomInfo")
 	ReservationToEntity reservationToEntity(Reservations reservations);
 	@Mapping(source = "reservationRequest.travelers", target = "travelers")
 	@Mapping(source = "reservationRequest.name", target = "name")
