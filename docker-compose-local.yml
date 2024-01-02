@@ -1,5 +1,13 @@
 version: "3.8"
 services:
+  travel-agency-jdk:
+    container_name: travel-agency-jdk
+    build:
+      dockerfile: Dockerfile
+      context: ./jdk
+    image: jundev21/travel-agency-jdk
+    ports:
+      - "8080:8080"
   travel-agency-redis:
     container_name: travel-agency-redis
     build:
@@ -23,7 +31,6 @@ services:
     environment:
       - MYSQL_DATABASE=travelAgency
       - MYSQL_ROOT_PASSWORD=${MYSQL_USER_PASSWORD}
-
     ports:
       - "3308:3306"
 
