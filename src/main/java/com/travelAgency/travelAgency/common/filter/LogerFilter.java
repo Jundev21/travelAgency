@@ -76,7 +76,7 @@ public class LogerFilter implements Filter {
 
 		String responseBody = new String(res.getContentAsByteArray());
 
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>> "
+		log.info("<<<<<<<<<<<<<<<<<<<<<<<"
 				+ "URI : {}" + "method : {}"
 				+ "header : {}, body: {}"
 			,uri, method, responseHeaderValues, responseBody);
